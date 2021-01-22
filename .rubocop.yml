@@ -1,13 +1,12 @@
-AllCops:
-  TargetRubyVersion: 2.4
+inherit_from:
+  - https://raw.githubusercontent.com/ractor-tools/rubocop-ractor-tools/master/.rubocop.yml
 
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
+Style/GlobalVars:
+  Enabled: false
 
-Style/StringLiteralsInInterpolation:
-  Enabled: true
-  EnforcedStyle: double_quotes
+Metrics/MethodLength:
+  Max: 16
 
-Layout/LineLength:
-  Max: 120
+Style/RescueModifier:
+  Exclude:
+    - 'spec/**/*.rb'

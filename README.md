@@ -1,8 +1,31 @@
 # RefineExport
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/refine_export`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Usage
 
-TODO: Delete this and the text above, and describe your gem
+This gems adds an `export:` keyword parameter to `refine` to export the refined methods
+into either the receiver (`export: true`) or a particular module (`export: MyMod`).
+
+```ruby
+using RefineExport
+
+module Extension
+  refine String, export: true do
+    def twice
+      self * 2
+    end
+  end
+end
+
+Extension.instance_methods # => [:twice] (because of export)
+
+# May be used either:
+using Extension
+'foo'.twice # => 'foofoo'
+
+# or the module may be included:
+Integer.include Extension
+21.twice # => 42
+```
 
 ## Installation
 
@@ -19,10 +42,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install refine_export
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
